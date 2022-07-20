@@ -1,8 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { LayoutRectangle, LayoutChangeEvent, Dimensions } from 'react-native';
-import { Pressable, ScrollView, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
+import React, { useState, useEffect, useRef } from "react";
+import { LayoutRectangle, LayoutChangeEvent, Dimensions } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 
 export type RouteProps = {
   id: number;
@@ -24,7 +33,7 @@ export type HorizontalScrollMenu = {
   activeBackgroundColor?: string;
   selected: number;
   scrollAreaStyle?: StyleProp<ViewStyle>;
-  keyboardShouldPersistTaps?: boolean | 'always' | 'never' | 'handled';
+  keyboardShouldPersistTaps?: boolean | "always" | "never" | "handled";
   itemWidth?: number;
 };
 
@@ -34,11 +43,11 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
   upperCase = false,
   textStyle,
   buttonStyle,
-  activeTextColor = '#ffffff',
-  activeBackgroundColor = '#000000',
+  activeTextColor = "#ffffff",
+  activeBackgroundColor = "#006FE5",
   selected = 0,
   scrollAreaStyle,
-  keyboardShouldPersistTaps = 'always',
+  keyboardShouldPersistTaps = "always",
   itemWidth = 100,
 }) => {
   const [index, setIndex] = useState<number>(selected);
@@ -59,7 +68,8 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
   }, [selected]);
 
   const scrollToDefaultIndex = () => {
-    let x = itemWidth * selected;
+    let x =
+      (itemWidth + 10) * selected - (screenWidth - 20) / 2 + itemWidth / 2;
     if (scrollViewRef.current !== null) {
       scrollViewRef.current.scrollTo({
         x: x,
@@ -70,7 +80,8 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
   };
 
   const scrollToPosition = () => {
-    let x = itemWidth * selected;
+    let x =
+      (itemWidth + 10) * selected - (screenWidth - 20) / 2 + itemWidth / 2;
     if (cords !== undefined && scrollViewRef.current !== null) {
       scrollViewRef.current.scrollTo({
         x: x,
@@ -87,7 +98,7 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
     setCords(layout);
   };
 
-  const centerPadding = screenWidth / 2 - itemWidth / 2;
+  const centerPadding = 0;
 
   return (
     <View style={[scrollAreaStyle, styles.scrollAreaStyle]}>
@@ -96,7 +107,10 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
         bounces={true}
         horizontal={true}
         pagingEnabled={false}
-        contentContainerStyle={[styles.contentContainerStyle, { paddingHorizontal: centerPadding }]}
+        contentContainerStyle={[
+          styles.contentContainerStyle,
+          { paddingHorizontal: 5 },
+        ]}
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={200}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
@@ -108,7 +122,9 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
               { width: itemWidth },
               index === route.id && styles.tabItemFocused,
               buttonStyle ? buttonStyle : styles.buttonStyles,
-              index === route.id && activeBackgroundColor ? { backgroundColor: activeBackgroundColor } : false,
+              index === route.id && activeBackgroundColor
+                ? { backgroundColor: activeBackgroundColor }
+                : false,
             ]}
             key={(route.id ? route.id : i).toString()}
             onPress={() => {
@@ -121,7 +137,9 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
               style={[
                 textStyle ? textStyle : styles.tabItemText,
                 index == route.id && styles.tabItemTextFocused,
-                index == route.id && activeTextColor ? { color: activeTextColor } : false,
+                index == route.id && activeTextColor
+                  ? { color: activeTextColor }
+                  : false,
               ]}
             >
               {upperCase ? route.name.toUpperCase() : route.name}
@@ -136,27 +154,27 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
 const styles = StyleSheet.create({
   tabItem: {
     borderRadius: 10,
-    borderColor: '#E4E4E4',
+    borderColor: "#E4E4E4",
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 5,
   },
   tabItemText: {
-    color: '#8C8C8C',
+    color: "#8C8C8C",
   },
   tabItemFocused: {
     borderWidth: 0,
   },
   tabItemTextFocused: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
   buttonStyles: {
     marginRight: 10,
   },
   contentContainerStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   scrollAreaStyle: {
     height: 50,
