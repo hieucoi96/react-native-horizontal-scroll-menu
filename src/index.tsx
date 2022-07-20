@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   buttonStyles: {
-    marginRight: 10,
+    marginHorizontal: 5,
   },
   contentContainerStyle: {
     alignItems: "center",
