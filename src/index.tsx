@@ -141,6 +141,7 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
                   ? { color: activeTextColor }
                   : false,
               ]}
+              numberOfLines={1}
             >
               {upperCase ? route.name.toUpperCase() : route.name}
             </Text>
