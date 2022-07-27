@@ -16,11 +16,13 @@ const screenWidth = Dimensions.get("window").width;
 export type RouteProps = {
   id: number;
   name: string;
+  [key: string]: any;
 };
 
 export type NavigationTabsProps = {
   id: number;
   name: string;
+  [key: string]: any;
 };
 
 export type HorizontalScrollMenu = {
