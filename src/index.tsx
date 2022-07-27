@@ -31,8 +31,8 @@ export type HorizontalScrollMenu = {
   upperCase?: boolean;
   textStyle?: StyleProp<TextStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
-  activeTextColor?: string;
-  activeBackgroundColor?: string;
+  activeTextStyle?: StyleProp<TextStyle>;
+  activeButtonStyle?: StyleProp<ViewStyle>;
   selected: number;
   scrollAreaStyle?: StyleProp<ViewStyle>;
   keyboardShouldPersistTaps?: boolean | "always" | "never" | "handled";
@@ -45,8 +45,8 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
   upperCase = false,
   textStyle,
   buttonStyle,
-  activeTextColor = "#ffffff",
-  activeBackgroundColor = "#006FE5",
+  activeTextStyle,
+  activeButtonStyle,
   selected = 0,
   scrollAreaStyle,
   keyboardShouldPersistTaps = "always",
@@ -124,8 +124,8 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
               { width: itemWidth },
               index === route.id && styles.tabItemFocused,
               buttonStyle ? buttonStyle : styles.buttonStyles,
-              index === route.id && activeBackgroundColor
-                ? { backgroundColor: activeBackgroundColor }
+              index === route.id && activeButtonStyle
+                ? activeButtonStyle
                 : false,
             ]}
             key={(route.id ? route.id : i).toString()}
@@ -139,9 +139,7 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
               style={[
                 textStyle ? textStyle : styles.tabItemText,
                 index == route.id && styles.tabItemTextFocused,
-                index == route.id && activeTextColor
-                  ? { color: activeTextColor }
-                  : false,
+                index == route.id && activeTextStyle ? activeTextStyle : false,
               ]}
               numberOfLines={1}
             >
@@ -156,9 +154,9 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
 
 const styles = StyleSheet.create({
   tabItem: {
-    borderRadius: 10,
-    borderColor: "#E4E4E4",
-    borderWidth: 1,
+    // borderRadius: 10,
+    // borderColor: "#E4E4E4",
+    borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
