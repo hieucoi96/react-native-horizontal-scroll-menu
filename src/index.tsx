@@ -154,9 +154,6 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
 
 const styles = StyleSheet.create({
   tabItem: {
-    // borderRadius: 10,
-    // borderColor: "#E4E4E4",
-    borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
