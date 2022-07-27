@@ -109,10 +109,7 @@ const HorizontalScrollMenu: React.FC<HorizontalScrollMenu> = ({
         bounces={true}
         horizontal={true}
         pagingEnabled={false}
-        contentContainerStyle={[
-          styles.contentContainerStyle,
-          { paddingHorizontal: 5 },
-        ]}
+        contentContainerStyle={[styles.contentContainerStyle]}
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={200}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
